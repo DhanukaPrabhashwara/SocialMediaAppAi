@@ -53,6 +53,7 @@ const Login = () => {
             placeholder="Email Address"
             required
             className={styles.authInput}
+            autoComplete="off"
           />
           <input
             type="password"
@@ -61,6 +62,7 @@ const Login = () => {
             placeholder="Password"
             required
             className={styles.authInput}
+            autoComplete="new-password"
           />
           <button
             type="submit"
