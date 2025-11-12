@@ -131,3 +131,50 @@
     font-size: 24px;
   }
 }
+
+.mediaButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background-color: #ffffff;
+  color: #4A90E2;
+  border: 2px dashed #4A90E2;
+  border-radius: 8px;
+  padding: 14px 0;
+  width: 100%;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+  margin-bottom: 20px;
+}
+
+.mediaButton:hover {
+  background-color: #f0faff;
+  border-color: #357ABD;
+}
+
+.mediaInput {
+  display: none;
+}
+
+.authInput {
+  width: 100%;
+  padding: 12px 16px;
+  margin-bottom: 20px;
+  font-size: 16px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+.authInput::placeholder {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 14px;
+  color: #888888;
+  opacity: 1;
+}

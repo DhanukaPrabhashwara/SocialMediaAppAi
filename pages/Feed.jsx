@@ -9,7 +9,6 @@ const Feed = () => {
 
   useEffect(() => {
     const postsRef = ref(database, 'posts');
-    // Query to order posts by timestamp. Firebase sorts in ascending order.
     const postsQuery = query(postsRef, orderByChild('timestamp'));
 
     const unsubscribe = onValue(
@@ -23,10 +22,9 @@ const Feed = () => {
               ...childSnapshot.val(),
             });
           });
-          // Reverse the array to show newest posts first
           setPosts(postsData.reverse());
         } else {
-          setPosts([]); // Handle case where there are no posts
+          setPosts([]);
         }
         setLoading(false);
       },
@@ -37,21 +35,21 @@ const Feed = () => {
       }
     );
 
-    // Cleanup listener on component unmount
     return () => unsubscribe();
   }, []);
 
-  // Helper to format the timestamp
   const formatTimestamp = (timestamp) => {
     return new Date(timestamp).toLocaleString();
   };
 
-  // Basic inline styles
   const styles = {
     feedContainer: { maxWidth: '800px', margin: '20px auto', padding: '0 20px', fontFamily: 'sans-serif' },
+    header: { marginBottom: '20px' },
     grid: { display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '20px' },
-    card: { border: '1px solid #ddd', borderRadius: '8px', overflow: 'hidden', boxShadow: '0 4px 6px rgba(0,0,0,0.1)' },
-    image: { width: '100%', height: '300px', objectFit: 'cover' },
+    card: { border: '1px solid #ddd', borderRadius: '8px', overflow: 'hidden', boxShadow: '0 4px 6px rgba(0,0,0,0.1)', background: '#181818' },
+    author: { fontSize: '0.8em', color: '#888', padding: '10px 15px 0 15px', fontWeight: 500, letterSpacing: '0.01em' },
+    imageWrapper: { padding: '10px 10px 0 10px' },
+    image: { width: '100%', height: '300px', objectFit: 'cover', display: 'block', borderRadius: '6px' },
     captionContainer: { padding: '15px' },
     caption: { margin: '0 0 10px 0' },
     timestamp: { fontSize: '0.8em', color: '#888' },
@@ -68,14 +66,21 @@ const Feed = () => {
 
   return (
     <div style={styles.feedContainer}>
-      <h1>Feed</h1>
+      <h1 style={styles.header}>Feed</h1>
       {posts.length === 0 ? (
         <div style={styles.message}>No posts yet. Be the first to upload!</div>
       ) : (
         <div style={styles.grid}>
           {posts.map((post) => (
             <div key={post.id} style={styles.card}>
-              <img src={post.imageUrl} alt={post.caption || 'User post'} style={styles.image} />
+              {/* Author styled like timestamp */}
+              <div style={styles.author}>
+                {post.userEmail || "Unknown author"}
+              </div>
+              {/* Space between card border and image */}
+              <div style={styles.imageWrapper}>
+                <img src={post.imageUrl} alt={post.caption || 'User post'} style={styles.image} />
+              </div>
               <div style={styles.captionContainer}>
                 <p style={styles.caption}>{post.caption}</p>
                 <small style={styles.timestamp}>
