@@ -45,11 +45,11 @@ export default function Home() {
                 <>
                   <p className="welcome-message">Welcome, {user.email}!</p>
                   <div className="button-group">
-                    <Link href="/Upload" className="button">
-                      Upload Photo
+                    <Link href="/Upload">
+                      <span className="button button-loggedin">Upload Photo</span>
                     </Link>
-                    <Link href="/Feed" className="button">
-                      View Feed
+                    <Link href="/Feed">
+                      <span className="button button-loggedin">View Feed</span>
                     </Link>
                   </div>
                 </>
@@ -57,11 +57,11 @@ export default function Home() {
                 <>
                   <p className="cta-message">Get started today!</p>
                   <div className="button-group">
-                    <Link href="/SignUp" className="button">
-                      Sign Up
+                    <Link href="/SignUp">
+                      <span className="button button-primary">Sign Up</span>
                     </Link>
-                    <Link href="/Login" className="button">
-                      Login
+                    <Link href="/Login">
+                      <span className="button button-secondary">Login</span>
                     </Link>
                   </div>
                 </>
@@ -77,7 +77,7 @@ export default function Home() {
           align-items: center;
           justify-content: center;
           min-height: 100vh;
-          background: linear-gradient(135deg, #4a90e2, #50c878);
+          background: linear-gradient(135deg, #434343, #000000);
           color: white;
           text-align: center;
           padding: 20px;
@@ -111,19 +111,48 @@ export default function Home() {
         .button-group {
           display: flex;
           gap: 20px;
+          flex-wrap: wrap;
+          justify-content: center;
         }
         .button {
-          background-color: white;
-          color: #333;
-          padding: 12px 30px;
+          display: inline-block;
+          padding: 15px 40px;
           border-radius: 8px;
           text-decoration: none;
-          font-weight: bold;
-          transition: transform 0.2s ease, box-shadow 0.2s ease;
+          font-weight: 600;
+          font-size: 18px;
+          transition: all 0.3s ease;
+          cursor: pointer;
+          text-align: center;
+          min-width: 140px;
         }
         .button:hover {
-          transform: scale(1.05);
-          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+          transform: translateY(-3px);
+          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+        }
+        .button-primary {
+          background-color: #4A90E2;
+          color: white;
+          border: none;
+        }
+        .button-primary:hover {
+          background-color: #357ABD;
+        }
+        .button-secondary {
+          background-color: transparent;
+          color: white;
+          border: 2px solid white;
+        }
+        .button-secondary:hover {
+          background-color: rgba(255, 255, 255, 0.15);
+        }
+        .button-loggedin {
+          background-color: #50C878;
+          color: white;
+          border: none;
+        }
+        .button-loggedin:hover {
+          background-color: #40A868;
         }
         @media (max-width: 600px) {
           .hero h1 {
@@ -131,6 +160,10 @@ export default function Home() {
           }
           .button-group {
             flex-direction: column;
+            width: 100%;
+          }
+          .button {
+            width: 100%;
           }
         }
       `}</style>

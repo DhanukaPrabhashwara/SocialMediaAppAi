@@ -1,0 +1,133 @@
+/* Container with gradient background matching homepage */
+.authContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #434343, #000000);
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Card/form wrapper */
+.authCard {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  padding: 40px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  max-width: 450px;
+  width: 100%;
+}
+
+/* Page heading */
+.authHeading {
+  color: #333;
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+/* Form styling */
+.authForm {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* Input fields */
+.authInput {
+  width: 100%;
+  padding: 12px 16px;
+  margin-bottom: 20px;
+  font-size: 16px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+.authInput:focus {
+  outline: none;
+  border-color: #4A90E2;
+}
+
+/* Submit button */
+.authButton {
+  width: 100%;
+  padding: 14px 32px;
+  font-size: 16px;
+  font-weight: 600;
+  background-color: #4A90E2;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.authButton:hover {
+  background-color: #357ABD;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(74, 144, 226, 0.4);
+}
+
+.authButton:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Message containers */
+.authMessage {
+  margin-top: 20px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.authError {
+  background-color: #ffdddd;
+  border: 1px solid #ffaaaa;
+  color: #d8000c;
+}
+
+.authSuccess {
+  background-color: #ddffdd;
+  border: 1px solid #aaffaa;
+  color: #005500;
+}
+
+/* Link styling */
+.authLink {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.authLink a {
+  color: #4A90E2;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.authLink a:hover {
+  color: #357ABD;
+  text-decoration: underline;
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+  .authCard {
+    padding: 30px 20px;
+  }
+
+  .authHeading {
+    font-size: 24px;
+  }
+}
