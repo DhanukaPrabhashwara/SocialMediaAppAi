@@ -43,11 +43,20 @@ const Feed = () => {
   };
 
   const styles = {
-    feedContainer: { maxWidth: '800px', margin: '20px auto', padding: '0 20px', fontFamily: 'sans-serif' },
+    feedContainer: { maxWidth: '800px', margin: '0px auto', padding: '0 20px', fontFamily: 'sans-serif' },
     header: { marginBottom: '20px' },
     grid: { display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '20px' },
-    card: { border: '1px solid #ddd', borderRadius: '8px', overflow: 'hidden', boxShadow: '0 4px 6px rgba(0,0,0,0.1)', background: '#181818' },
-    author: { fontSize: '0.8em', color: '#888', padding: '10px 15px 0 15px', fontWeight: 500, letterSpacing: '0.01em' },
+    card: {
+      border: '1px solid rgba(255, 255, 255, 0.15)',
+      borderRadius: '16px',
+      overflow: 'hidden',
+      boxShadow: '0 4px 20px rgba(0,0,0,0.15)',
+      background: 'rgba(24, 24, 24, 0.45)', // translucent dark
+      backdropFilter: 'blur(10px)',          // the glass blur
+      WebkitBackdropFilter: 'blur(10px)',    // for Safari
+      transition: 'background 0.3s, box-shadow 0.3s',
+    },
+    author: { fontSize: '0.8em', color: '#cfcfcfff', padding: '10px 15px 0 15px', fontWeight: 500, letterSpacing: '0.01em' },
     imageWrapper: { padding: '10px 10px 0 10px' },
     image: { width: '100%', height: '300px', objectFit: 'cover', display: 'block', borderRadius: '6px' },
     captionContainer: { padding: '15px' },
@@ -65,32 +74,39 @@ const Feed = () => {
   }
 
   return (
-    <div style={styles.feedContainer}>
-      <h1 style={styles.header}>Feed</h1>
-      {posts.length === 0 ? (
-        <div style={styles.message}>No posts yet. Be the first to upload!</div>
-      ) : (
-        <div style={styles.grid}>
-          {posts.map((post) => (
-            <div key={post.id} style={styles.card}>
-              {/* Author styled like timestamp */}
-              <div style={styles.author}>
-                {post.userEmail || "Unknown author"}
+    <div style={{
+      minHeight: '100vh',
+      background: 'linear-gradient(135deg, #434343, #000000)',
+      width: '100%',
+      color: 'white',
+    }}>
+      <div style={styles.feedContainer}>
+        <h1 style={styles.header}>Feed</h1>
+        {posts.length === 0 ? (
+          <div style={styles.message}>No posts yet. Be the first to upload!</div>
+        ) : (
+          <div style={styles.grid}>
+            {posts.map((post) => (
+              <div key={post.id} style={styles.card}>
+                {/* Author styled like timestamp */}
+                <div style={styles.author}>
+                  {post.userEmail || "Unknown author"}
+                </div>
+                {/* Space between card border and image */}
+                <div style={styles.imageWrapper}>
+                  <img src={post.imageUrl} alt={post.caption || 'User post'} style={styles.image} />
+                </div>
+                <div style={styles.captionContainer}>
+                  <p style={styles.caption}>{post.caption}</p>
+                  <small style={styles.timestamp}>
+                    {formatTimestamp(post.timestamp)}
+                  </small>
+                </div>
               </div>
-              {/* Space between card border and image */}
-              <div style={styles.imageWrapper}>
-                <img src={post.imageUrl} alt={post.caption || 'User post'} style={styles.image} />
-              </div>
-              <div style={styles.captionContainer}>
-                <p style={styles.caption}>{post.caption}</p>
-                <small style={styles.timestamp}>
-                  {formatTimestamp(post.timestamp)}
-                </small>
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 };

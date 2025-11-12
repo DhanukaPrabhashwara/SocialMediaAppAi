@@ -9,52 +9,62 @@ const Navbar = () => {
   const router = useRouter();
 
   useEffect(() => {
-    // Set up a listener for authentication state changes
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
     });
-
-    // Cleanup the listener when the component unmounts
     return () => unsubscribe();
   }, []);
 
   const handleLogout = async () => {
     try {
       await signOut(auth);
-      // Redirect to homepage after successful logout
       router.push('/');
     } catch (error) {
       console.error('Failed to log out:', error);
     }
   };
 
+  const isActive = (href) => router.pathname === href ? 'active' : '';
+
   return (
     <>
       <nav>
         <div className="logo">
-          <Link href="/">Social</Link>
+          <Link href="/" legacyBehavior>
+            <a>Socialo</a>
+          </Link>
         </div>
         <div className="nav-links">
           {user ? (
             <>
-              <Link href="/">Home</Link>
-              <Link href="/Upload">Upload</Link>
-              <Link href="/Feed">Feed</Link>
+              <Link href="/" legacyBehavior>
+                <a className={isActive('/')}>Home</a>
+              </Link>
+              <Link href="/Upload" legacyBehavior>
+                <a className={isActive('/Upload')}>Upload</a>
+              </Link>
+              <Link href="/Feed" legacyBehavior>
+                <a className={isActive('/Feed')}>Feed</a>
+              </Link>
               <button onClick={handleLogout} className="logout-button">
                 Logout
               </button>
             </>
           ) : (
             <>
-              <Link href="/">Home</Link>
-              <Link href="/SignUp">Sign Up</Link>
-              <Link href="/Login">Login</Link>
+              <Link href="/" legacyBehavior>
+                <a className={isActive('/')}>Home</a>
+              </Link>
+              <Link href="/SignUp" legacyBehavior>
+                <a className={isActive('/SignUp')}>Sign Up</a>
+              </Link>
+              <Link href="/Login" legacyBehavior>
+                <a className={isActive('/Login')}>Login</a>
+              </Link>
             </>
           )}
         </div>
       </nav>
-
-      {/* Using JSX-styled CSS for component-scoped styling */}
       <style jsx>{`
         nav {
           display: flex;
@@ -86,8 +96,14 @@ const Navbar = () => {
           font-size: 1rem;
           transition: color 0.3s ease;
         }
-        .nav-links a:hover {
-          color: #4a90e2;
+        .nav-links a.active {
+          color: #4A90E2;
+          font-weight: bold;
+          border-bottom: 2px solid #4A90E2;
+          padding-bottom: 2px;
+        }
+        .nav-links a:not(.active):hover {
+          color: #357ABD;
         }
         .logout-button {
           background: none;
@@ -102,8 +118,6 @@ const Navbar = () => {
           border-color: #4a90e2;
           color: white;
         }
-
-        /* Responsive Design for mobile */
         @media (max-width: 768px) {
           nav {
             flex-direction: column;

@@ -21,7 +21,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Welcome to Social Media App</title>
+        <title>Welcome to Socialo</title>
         <meta
           name="description"
           content="Share your moments with the world. Upload photos, connect with friends, and explore amazing content."
@@ -32,7 +32,7 @@ export default function Home() {
       <div className="container">
         <main className="main">
           <div className="hero">
-            <h1>Welcome to Social</h1>
+            <h1>Welcome to Socialo</h1>
             <p>
               Share your moments with the world. Upload photos, connect with
               friends, and explore amazing content.
@@ -147,12 +147,12 @@ export default function Home() {
           background-color: rgba(255, 255, 255, 0.15);
         }
         .button-loggedin {
-          background-color: #50C878;
+          background-color: #4A90E2;
           color: white;
           border: none;
         }
         .button-loggedin:hover {
-          background-color: #40A868;
+          background-color: #357ABD;
         }
         @media (max-width: 600px) {
           .hero h1 {
