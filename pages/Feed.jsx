@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import Head from 'next/head';
 import { ref, query, onValue, orderByChild } from 'firebase/database';
 import { database } from '../lib/firebase';
 
@@ -80,6 +81,9 @@ const Feed = () => {
       width: '100%',
       color: 'white',
     }}>
+      <Head>
+        <title>Feed - Socialo</title>
+      </Head>
       <div style={styles.feedContainer}>
         <h1 style={styles.header}>Feed</h1>
         {posts.length === 0 ? (
