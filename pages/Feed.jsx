@@ -82,7 +82,7 @@ const Feed = () => {
       color: 'white',
     }}>
       <Head>
-        <title>Feed - Socialo</title>
+        <title>Socialo</title>
       </Head>
       <div style={styles.feedContainer}>
         <h1 style={styles.header}>Feed</h1>

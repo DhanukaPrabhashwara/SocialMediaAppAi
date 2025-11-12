@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Head from 'next/head';
 import Link from 'next/link';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../lib/firebase';
@@ -50,6 +51,9 @@ const SignUp = () => {
 
   return (
     <div className={styles.authContainer}>
+      <Head>
+        <title>Socialo</title>
+      </Head>
       <div className={styles.authCard}>
         <h2 className={styles.authHeading}>Create Your Account</h2>
         <form onSubmit={handleSignUp} className={styles.authForm}>

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { signInWithEmailAndPassword } from 'firebase/auth';
@@ -43,6 +44,9 @@ const Login = () => {
 
   return (
     <div className={styles.authContainer}>
+      <Head>
+        <title>Socialo</title>
+      </Head>
       <div className={styles.authCard}>
         <h2 className={styles.authHeading}>Welcome Back</h2>
         <form onSubmit={handleLogin} className={styles.authForm}>

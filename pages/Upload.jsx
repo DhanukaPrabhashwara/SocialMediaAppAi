@@ -2,10 +2,10 @@ import { useState, useRef } from 'react';
 import { useRouter } from 'next/router';
 import { ref, push, serverTimestamp } from 'firebase/database';
 import { auth, database } from '../lib/firebase';
+import Head from 'next/head';  // Import Head here
 import styles from '../styles/auth.module.css';
 
 const Upload = () => {
-  // States for caption, image file, loading, error, success, and image preview
   const router = useRouter();
   const [caption, setCaption] = useState('');
   const [image, setImage] = useState(null);
@@ -15,11 +15,8 @@ const Upload = () => {
   const [preview, setPreview] = useState(null);
 
   const fileInputRef = useRef(null);
-
-  // ImgBB API Key
   const IMGBB_API_KEY = '4d8db2bad20c776e0c4d06790936d722';
 
-  // Handle image file selection and create preview URL
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -32,7 +29,6 @@ const Upload = () => {
     }
   };
 
-  // Upload handler using ImgBB API and saving to Firebase Realtime DB
   const handleUpload = async (e) => {
     e.preventDefault();
     if (!image) {
@@ -43,7 +39,6 @@ const Upload = () => {
       setError('You must be logged in to upload a post.');
       return;
     }
-
     setLoading(true);
     setError(null);
     setSuccess('');
@@ -52,24 +47,18 @@ const Upload = () => {
     reader.readAsDataURL(image);
     reader.onloadend = async () => {
       const base64Image = reader.result.split(',')[1];
-
       const formData = new FormData();
       formData.append('image', base64Image);
-
       try {
         const imgbbResponse = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, {
           method: 'POST',
           body: formData,
         });
-
         const imgbbResult = await imgbbResponse.json();
-
         if (!imgbbResult.success) {
           throw new Error(imgbbResult.error?.message || 'Image upload to ImgBB failed.');
         }
-
         const imageUrl = imgbbResult.data.url;
-
         const postData = {
           imageUrl,
           caption,
@@ -77,10 +66,8 @@ const Upload = () => {
           userId: auth.currentUser.uid,
           userEmail: auth.currentUser.email,
         };
-
         const postsRef = ref(database, 'posts');
         await push(postsRef, postData);
-
         setSuccess('Post uploaded successfully!');
         setCaption('');
         setImage(null);
@@ -102,16 +89,15 @@ const Upload = () => {
 
   return (
     <div className={styles.authContainer}>
+      <Head>
+        <title>Socialo</title>
+      </Head>
       <div className={styles.authCard}>
         <h2 className={styles.authHeading}>Create a New Post</h2>
         <form onSubmit={handleUpload} className={styles.authForm}>
-          <button
-            type="button"
-            className={styles.mediaButton}
-            onClick={() => fileInputRef.current.click()}
-          >
+          <button type="button" className={styles.mediaButton} onClick={() => fileInputRef.current.click()}>
             <svg height="20" width="20" fill="#4A90E2" viewBox="0 0 24 24">
-              <path d="M12 5v14m7-7H5" stroke="#4A90E2" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M12 5v14m7-7H5" stroke="#4A90E2" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
             Add Media
           </button>
@@ -137,17 +123,11 @@ const Upload = () => {
             rows="4"
             className={styles.authInput}
           />
-          <button
-            type="submit"
-            disabled={loading}
-            className={styles.authButton}
-          >
+          <button type="submit" disabled={loading} className={styles.authButton}>
             {loading ? 'Uploading...' : 'Upload Post'}
           </button>
         </form>
-        {error && (
-          <div className={`${styles.authMessage} ${styles.authError}`}>{error}</div>
-        )}
+        {error && <div className={`${styles.authMessage} ${styles.authError}`}>{error}</div>}
         {success && (
           <div className={`${styles.authMessage} ${styles.authSuccess}`}>
             {success}
