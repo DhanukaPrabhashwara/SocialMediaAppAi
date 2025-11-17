@@ -1,40 +1,36 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# Social Media Web App
 
-## Getting Started
+A modern, lightweight social media application built with Next.js, Firebase, and AI-assisted development. This project was created as part of the DETZ Global AI Innovation Division internship program, demonstrating the power of AI prompt engineering in rapid software development.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **User Authentication**: Secure sign-up and login functionality using Firebase Authentication
+- **Image Upload**: Users can upload images with captions (powered by ImgBB API)
+- **Live Feed**: Real-time display of posts from all users with timestamps
+- **Responsive Design**: Modern UI with glassmorphism effects and mobile-friendly layout
+- **Static Export**: Optimized for deployment on Firebase Hosting
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Tech Stack
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+- **Framework**: Next.js 16 (Pages Router)
+- **Backend**: Firebase Realtime Database & Authentication (SDK v9 modular)
+- **Image Hosting**: ImgBB API
+- **Deployment**: Firebase Hosting with GitHub Actions CI/CD
+- **Styling**: CSS Modules with inline styles
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## Development Notes
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+This project was developed using AI prompt engineering techniques with Google Gemini Code Assist. All major prompts and development steps are documented in `prompts.md`.
+## Live Demo
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+🔗 [View Live App](https://socialmediaapp-e4e83.web.app)
 
-## Learn More
+## License
 
-To learn more about Next.js, take a look at the following resources:
+This project is part of DETZ Global AI Innovation Division internship program.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+## Author
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+**Dhanuka Prabhashwara**  
+Intern, AI Innovation Division  
+DETZ Global (PVT) LTD
